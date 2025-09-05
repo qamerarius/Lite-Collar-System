@@ -3,7 +3,6 @@
 // Version 0.9.4
 // A light weight collar script with rlv functions for use inplace of open collar
 // Compatible with open collar leash holders
-// By Dawn Pienaar
 //---------------------------------------------------------------------------------------
 
 integer menu_chan; //set to random chan on state entry
