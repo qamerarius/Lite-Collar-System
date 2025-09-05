@@ -73,15 +73,13 @@ stop_move(){
 default{
     attach(key id){
         if(id != NULL_KEY) llResetScript();  
-    }
-    
+    }    
     state_entry(){
         llSetMemoryLimit(16384); //Impose memory limit to save resources example 32768 16384 
         llScriptProfiler(PROFILE_SCRIPT_MEMORY); //Set limited profile.
         remove_particles(partical_emitter_link); //remove particals if emitting 
         unleash(); //reset leash if leashed
     }
-
     link_message(integer source, integer chan, string message, key uuid){
         //llOwnerSay("source: " + (string)source + "\nnum: " + (string)chan + "\nMsg: " + message + "\nid: " + (string)uuid);
         //message from root prim
@@ -125,23 +123,20 @@ default{
                 }
             }
         }
-    }
-    
+    }    
     at_target(integer id, vector target_pos, vector my_pos){
         if(id == target_id){
             stop_move();
             if(rlv_enabled) look_at();
         }
-    }
-    
+    }    
     not_at_target(){
         vector dom_pos = llList2Vector(llGetObjectDetails(dom_key, [OBJECT_POS]), 0);
         if (dom_pos == ZERO_VECTOR || llVecDist(llGetPos(), dom_pos) < 0.6){ //Avatar lost or close enough <3
             stop_move();
         }
         llSleep(0.1);//sleep 0.1ms to save on cpu time during move
-    }
-    
+    }    
     timer(){
         if(dom_key){ //make sure we have  a dom key... incase it dispeers ? :?
             vector dom_pos = llList2Vector(llGetObjectDetails(dom_key, [OBJECT_POS]), 0);
